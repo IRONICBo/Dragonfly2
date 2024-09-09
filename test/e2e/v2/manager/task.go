@@ -30,8 +30,8 @@ import (
 	"d7y.io/dragonfly/v2/test/e2e/v2/util"
 )
 
-var _ = Describe("Get and Delete with Manager", func() {
-	Context("get and delete /bin/md5sum task", func() {
+var _ = Describe("Get and delete task with Manager", func() {
+	Context("get and delete /bin/cat task", func() {
 		It("get and delete task should be ok", func() {
 			// Create preheat job
 			managerPod, err := util.ManagerExec(0)
@@ -42,7 +42,7 @@ var _ = Describe("Get and Delete with Manager", func() {
 				Type: internaljob.PreheatJob,
 				Args: types.PreheatArgs{
 					Type: "file",
-					URL:  util.GetFileURL("/bin/md5sum"),
+					URL:  util.GetFileURL("/bin/cat"),
 				},
 			})
 			Expect(err).NotTo(HaveOccurred())
@@ -62,8 +62,8 @@ var _ = Describe("Get and Delete with Manager", func() {
 			Expect(done).Should(BeTrue())
 
 			fileMetadata := util.FileMetadata{
-				ID:     "6ba5a8781902368d2b07eb8b6d6044a96f49d5008feace1ea8e3ebfc0b96d0a1",
-				Sha256: "80f1d8cd843a98b23b30e90e7e43a14e05935351f354d678bc465f7be66ef3dd",
+				ID:     "6f1e003b51a34df01dd80e3498dbaad584584d97888464b33b3e2c8442a3d485",
+				Sha256: "df954abca766aceddd79dd20429e4f222019018667446626d3a641d3c47c50fc",
 			}
 
 			seedClientPods := make([]*util.PodExec, 3)
