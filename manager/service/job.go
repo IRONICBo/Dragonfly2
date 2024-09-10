@@ -228,9 +228,9 @@ func (s *service) findAvailableSchedulers(ctx context.Context, schedulerClusterI
 			}).Error; err != nil {
 				continue
 			}
-		}
 
-		availableSchedulers = append(availableSchedulers, availableSchedulers...)
+			availableSchedulers = append(availableSchedulers, schedulers...)
+		}
 	}
 
 	if len(availableSchedulers) == 0 {

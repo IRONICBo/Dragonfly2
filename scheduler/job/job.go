@@ -318,6 +318,19 @@ func (j *job) getTask(ctx context.Context, data string) (string, error) {
 		return "", err
 	}
 
+	// Print current TaskManager information.
+	logger.Infof("current task manager information:")
+	j.resource.TaskManager().Range(func(key, value any) bool {
+		task, ok := value.(*resource.Task)
+		if !ok {
+			logger.Errorf("invalid task %v %v", key, value)
+			return true
+		}
+		logger.Infof("task %s: %v", key, task)
+		return true
+	})
+	logger.Infof("get task %s", req.TaskID)
+
 	task, ok := j.resource.TaskManager().Load(req.TaskID)
 	if !ok {
 		logger.Errorf("task %s not found", req.TaskID)
